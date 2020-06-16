@@ -1,17 +1,13 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import Cookies from 'js-cookie';
-import jwtDecode from 'jwt-decode';
-import { requestGetNotes } from './noteSlice';
+import { requestGetNotes, selectUser } from './noteSlice';
 import { NoteListItem } from './NoteListItem';
 import './NoteList.scss';
 
 export const NoteList = () => {
   const dispatch = useDispatch();
-  const token = Cookies.get('token');
-  const decodedToken = jwtDecode(token);
-  const userId = decodedToken.id;
+  const { userId } = useSelector(selectUser);
 
   useEffect(() => {
     const fetchData = async() => {
