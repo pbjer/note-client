@@ -18,7 +18,7 @@ export const Home = () => {
           All notes isn't just notes... it's all the notes
         </p>
         <a
-          href="http://localhost:3030/auth/google"
+          href={`${process.env.REACT_APP_API_ROOT}/auth/google`}
           className="btn btn-primary">
           Sign in with Google
         </a>

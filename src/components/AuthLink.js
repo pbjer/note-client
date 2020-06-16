@@ -19,7 +19,7 @@ export const AuthLink = (props) => {
   if (!loggedIn) {
     return (
       <a
-        href="http://localhost:3030/auth/google"
+        href={`${process.env.REACT_APP_API_ROOT}/auth/google`}
         className="nav-link auth-link">
         Sign in
       </a>

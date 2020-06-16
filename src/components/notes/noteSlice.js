@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
+import axios from '../../lib/axios';
 
 export const noteSlice = createSlice({
   name: 'notes',
@@ -50,16 +50,14 @@ export const {
 } = noteSlice.actions;
 
 // Thunks
-// TODO: refactor thunks use axios config and reduce duplicate code
 export const requestCreateNote = (payload) => async(dispatch) => {
   let response = null;
   const { userId, title, body, history } = payload;
   const requestBody = { title, body };
   try {
     response = await axios.post(
-      `http://localhost:3030/user/${userId}/note`,
+      `/user/${userId}/note`,
       requestBody,
-      { withCredentials: true }
     );
     await dispatch(setCurrentNote(response.data))
   } catch(e) {
@@ -75,7 +73,7 @@ export const requestCreateNote = (payload) => async(dispatch) => {
 export const requestGetNotes = (userId) => async(dispatch) => {
   let response = null;
   try {
-    response = await axios.get(`http://localhost:3030/user/${userId}`, { withCredentials: true });
+    response = await axios.get(`/user/${userId}`);
   } catch(e) {
     console.log(e)
   } finally {
@@ -89,7 +87,7 @@ export const requestGetNoteById = (payload) => async(dispatch) => {
   let response = null;
   const { userId, id } = payload;
   try {
-    response = await axios.get(`http://localhost:3030/user/${userId}/note/${id}`, { withCredentials: true });
+    response = await axios.get(`/user/${userId}/note/${id}`);
     await dispatch(await setCurrentNote(response.data))
   } catch(e) {
     console.log(e)
@@ -105,9 +103,8 @@ export const requestUpdateNote = (payload) => async(dispatch) => {
   let response = null;
   try {
     response = await axios.put(
-      `http://localhost:3030/user/${userId}/note/${id}`,
+      `/user/${userId}/note/${id}`,
       requestBody,
-      { withCredentials: true }
     );
     await dispatch(setCurrentNote(response.data))
   } catch(e) {
@@ -122,7 +119,7 @@ export const requestDeleteNote = (payload) => async(dispatch) => {
   let response = null;
   const { userId, id, history } = payload;
   try {
-    response = await axios.delete(`http://localhost:3030/user/${userId}/note/${id}`, { withCredentials: true });
+    response = await axios.delete(`/user/${userId}/note/${id}`);
   } catch(e) {
     console.log(e)
   } finally {
