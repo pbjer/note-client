@@ -1,0 +1,46 @@
+label {
+  cursor: text;
+}
+
+input, textarea {
+  padding-bottom: 10px;
+  border: none;
+  border-bottom: $input-border;
+  caret-color: $ruby;
+  &::placeholder {
+    color: $mediumgrey;
+  }
+  &:hover {
+    border-color: $darkgrey;
+  }
+  &:focus {
+    border-color: $ruby;
+  }
+}
+textarea {
+  resize: none;
+  height: 45px;
+}
+.input-row {
+  display: block;
+  margin-top: 50px;
+  color: $darkgrey;
+}
+.note_input-title {
+  width: 100%;
+  margin-top: 15px;
+  font-size: 2em;
+  font-weight: $heavy;
+}
+.note_input-body {
+  width: 100%;
+  margin-top: 15px;
+  font-size: 1.25em;
+  padding-bottom: 0;
+}
+.form-actions {
+  margin-top: 15px;
+}
+.btn-primary {
+  margin-right: 10px;
+}
