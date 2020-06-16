@@ -5,12 +5,12 @@ export const Home = () => {
   return (
     <div className="home">
       <div className="welcome">
-          <span
-            className="note-emoji"
-            role="img"
-            aria-label="notepad and pencil">
-            📝
-          </span>
+        <span
+          className="note-emoji"
+          role="img"
+          aria-label="notepad and pencil">
+          📝
+        </span>
         <h1 className="header">
           Welcome to All Notes
         </h1>
