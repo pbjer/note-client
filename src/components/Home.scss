@@ -1,0 +1,32 @@
+@keyframes MoveUpDown {
+  0% {
+    transform: translateY(5px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(5px);
+  }
+}
+.home {
+  position: relative;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.note-emoji {
+  animation: MoveUpDown 2s ease-in-out infinite;
+  font-size: 100px;
+  position: absolute;
+  top: 0px;
+  left: calc(50% - 45px);
+}
+.header {
+  font-weight: $heavy;
+}
+.subheader {
+  margin-bottom: 25px;
+}
