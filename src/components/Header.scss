@@ -1,0 +1,23 @@
+#header {
+  margin-bottom: 50px;
+}
+.nav-list {
+  display: flex;
+  justify-content: space-between;
+}
+.nav-item {
+  line-height: 60px;
+}
+.nav-link {
+  padding: 20px 0px;
+  text-decoration: none;
+  color: $sapphire;
+  transition: all .2s ease;
+  &:hover {
+    color: $ruby;
+  }
+}
+.all-notes {
+  font-size: 1.5em;
+  font-weight: $heavy;
+}
