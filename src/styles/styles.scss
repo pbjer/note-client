@@ -1,0 +1,34 @@
+@import './reset';
+@import './variables';
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+body, textarea {
+  font-family: 'Inter', 'Arial', sans-serif;
+}
+
+body, #root, #app-wrapper {
+  min-height: 100vh;
+}
+
+.btn {
+  display: inline-block;
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 1em;
+  &:hover {
+    cursor: pointer;
+    opacity: .8;
+  }
+}
+.btn-primary {
+  border: 1px solid $ruby;
+  background: $ruby;
+  color: $white;
+}
+.btn-secondary {
+  border: 1px solid $ruby;
+  background: $white;
+  color: $ruby;
+}
