@@ -23,9 +23,6 @@ export const noteSlice = createSlice({
     setUser: (state, action) => {
       state.user = action.payload;
     },
-    setUserLoggedInStatus: (state, action) => {
-      state.user.loggedIn = action.payload;
-    },
     setCurrentNote: (state, action) => {
       state.currentNote = action.payload;
     },
@@ -51,82 +48,62 @@ export const {
 
 // Thunks
 export const requestCreateNote = (payload) => async(dispatch) => {
-  let response = null;
   const { userId, title, body, history } = payload;
   const requestBody = { title, body };
   try {
-    response = await axios.post(
+    const response = await axios.post(
       `/user/${userId}/note`,
       requestBody,
     );
-    await dispatch(setCurrentNote(response.data))
+    await dispatch(setCurrentNote(response.data));
+    const { id } = response.data;
+    history.push(`/note/${id}`);
   } catch(e) {
-    console.log(e)
-  } finally {
-    if (response) {
-      const { id } = response.data
-      history.push(`/note/${id}`);
-    }
+    console.log(e);
   }
 }
 
 export const requestGetNotes = (userId) => async(dispatch) => {
-  let response = null;
   try {
-    response = await axios.get(`/user/${userId}`);
+    const response = await axios.get(`/user/${userId}`);
+    await dispatch(setAllNotes(response.data));
   } catch(e) {
-    console.log(e)
-  } finally {
-    if (response) {
-      await dispatch(setAllNotes(response.data))
-    }
+    console.log(e);
   }
 }
 
 export const requestGetNoteById = (payload) => async(dispatch) => {
-  let response = null;
   const { userId, id } = payload;
   try {
-    response = await axios.get(`/user/${userId}/note/${id}`);
-    await dispatch(await setCurrentNote(response.data))
+    const response = await axios.get(`/user/${userId}/note/${id}`);
+    await dispatch(await setCurrentNote(response.data));
   } catch(e) {
-    console.log(e)
-  } finally {
-    if (response) {
-    }
+    console.log(e);
   }
 }
 
 export const requestUpdateNote = (payload) => async(dispatch) => {
   const { userId, id, title, body } = payload;
-  const requestBody = { title, body }
-  let response = null;
+  const requestBody = { title, body };
   try {
-    response = await axios.put(
+    const response = await axios.put(
       `/user/${userId}/note/${id}`,
       requestBody,
     );
-    await dispatch(setCurrentNote(response.data))
+    await dispatch(setCurrentNote(response.data));
   } catch(e) {
-    console.log(e)
-  } finally {
-    if (response) {
-    }
+    console.log(e);
   }
 }
 
 export const requestDeleteNote = (payload) => async(dispatch) => {
-  let response = null;
   const { userId, id, history } = payload;
   try {
-    response = await axios.delete(`/user/${userId}/note/${id}`);
+    await axios.delete(`/user/${userId}/note/${id}`);
+    await dispatch(clearCurrentNote());
+    history.push('/notes');
   } catch(e) {
-    console.log(e)
-  } finally {
-    if (response) {
-      await dispatch(clearCurrentNote());
-      history.push('/notes');
-    }
+    console.log(e);
   }
 }
 
@@ -136,8 +113,8 @@ export const clearCurrentNote = () => (dispatch) => {
     title: '',
     body: '',
     created_at: null,
-    deleted_at: null,
-  }))
+    deleted_at: null
+  }));
 }
 
 // Selectors
