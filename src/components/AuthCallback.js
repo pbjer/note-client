@@ -2,7 +2,7 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import Cookies from 'js-cookie';
 import jwtDecode from 'jwt-decode';
-import { setUser } from './components/notes/notesSlice.js';
+import { setUser } from './components/notes/noteSlice.js';
 
 // This component serves as an entry point for
 // a user at the end of the google-auth process.
