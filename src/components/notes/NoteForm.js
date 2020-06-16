@@ -1,8 +1,6 @@
 import React, { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
-import Cookies from 'js-cookie';
-import jwtDecode from 'jwt-decode';
 import {
   requestCreateNote,
   requestUpdateNote,
@@ -12,6 +10,7 @@ import {
   setCurrentTitle,
   setCurrentBody,
   clearCurrentNote,
+  selectUser,
 } from './noteSlice';
 import './NoteForm.scss'
 
@@ -19,9 +18,7 @@ export const NoteForm = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const params = useParams();
-  const token = Cookies.get('token');
-  const decodedToken = jwtDecode(token);
-  const userId = decodedToken.id;
+  const { userId } = useSelector(selectUser);
   const id = params.id ? params.id : null;
   const { title, body } = useSelector(selectCurrentNote);
 
