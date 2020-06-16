@@ -61,6 +61,11 @@ export const NoteForm = () => {
     }
   }
 
+  const handleDelete = async(e) => {
+    e.preventDefault();
+    await dispatch(requestDeleteNote({ userId, id, history }))
+  }
+
   return (
     <form>
       <label className="input-row">
@@ -88,7 +93,7 @@ export const NoteForm = () => {
         </button>
         <button
           className="btn btn-secondary"
-          onClick={() => dispatch(requestDeleteNote({ userId, id, history }))}>
+          onClick={(e) => handleDelete(e)}>
           Delete this note
         </button>
       </div>

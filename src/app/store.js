@@ -3,6 +3,6 @@ import noteReducer from '../components/notes/noteSlice';
 
 export default configureStore({
   reducer: {
-    counter: noteReducer,
+    notes: noteReducer,
   },
 });

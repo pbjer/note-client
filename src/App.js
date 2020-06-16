@@ -3,8 +3,8 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-} from "react-router-dom";
-import { Header } from './Header';
+} from 'react-router-dom';
+import { Header } from './components/Header';
 import { Home } from './components/Home';
 import { AuthCallback } from './components/AuthCallback';
 import { NoteList } from './components/notes/NoteList';
