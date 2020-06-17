@@ -12,6 +12,7 @@ import { Header } from './components/Header';
 import { Home } from './components/Home';
 import { NoteList } from './components/notes/NoteList';
 import { NoteForm } from './components/notes/NoteForm';
+import { Settings } from './components/Settings';
 import './styles/styles.scss';
 import './App.scss';
 
@@ -43,6 +44,10 @@ export const App = () => {
             exact
             path="/note/:id"
             component={NoteForm} />
+          <Route
+            exact
+            path="/settings"
+            component={Settings} />
         </Switch>
       </Router>
     </div>
