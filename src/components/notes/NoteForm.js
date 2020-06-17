@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import {
@@ -63,9 +63,14 @@ export const NoteForm = () => {
     }
   }
 
+  let [ deleteStep, setDeleteStep ] = useState(0);
+
   const handleDelete = async(e) => {
     e.preventDefault();
-    await dispatch(requestDeleteNote({ userId, id, history }))
+    setDeleteStep(deleteStep = deleteStep + 1);
+    if (deleteStep === 2) {
+      await dispatch(requestDeleteNote({ userId, id, history }))
+    }
   }
 
   return (
@@ -98,7 +103,7 @@ export const NoteForm = () => {
             <button
               className="btn btn-secondary"
               onClick={(e) => handleDelete(e)}>
-              Delete this note
+              { deleteStep === 0 ? 'Delete this note' : 'Click to confirm'}
             </button>
           ) : null
         }
