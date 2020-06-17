@@ -6,11 +6,9 @@
 body, textarea {
   font-family: 'Inter', 'Arial', sans-serif;
 }
-
 body, #root, #app-wrapper {
   min-height: 100vh;
 }
-
 .btn {
   display: inline-block;
   text-decoration: none;
@@ -32,11 +30,16 @@ body, #root, #app-wrapper {
   background: $white;
   color: $ruby;
 }
-
 .disabled {
   opacity: .3;
   &:hover {
     opacity: .3;
     cursor: not-allowed;
   }
+}
+.success {
+  color: $success-green;
+}
+.error {
+  color: $error-red;
 }

@@ -14,6 +14,7 @@ import { NoteList } from './components/notes/NoteList';
 import { NoteForm } from './components/notes/NoteForm';
 import { Settings } from './components/Settings';
 import { NoMatch } from './components/NoMatch';
+import { Notification } from './components/Notification';
 import './styles/styles.scss';
 import './App.scss';
 
@@ -31,6 +32,7 @@ export const App = () => {
     <div id="app-wrapper">
       <Router>
         <Header />
+        <Notification />
         <Switch>
           <Route
             exact

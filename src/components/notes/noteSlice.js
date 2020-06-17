@@ -8,7 +8,6 @@ export const noteSlice = createSlice({
     // If new features past notes were added to this app
     // it would be worthwhile to create a separate slice
     // for managing user state by itself.
-    requestError: null,
     user: {
       loggedIn: false,
       userId: null,
@@ -26,13 +25,15 @@ export const noteSlice = createSlice({
     limit: null,
     start: 0,
     totalResults: 0,
+    notification: false,
+    notificationMsg: {
+      type: '',
+      message: ''
+    },
   },
   reducers: {
     // Redux Toolkit uses Immer under the hood to provide
     // a 'mutation' like interface for updating state
-    setRequestError: (state, action) => {
-      state.requestError = action.payload;
-    },
     setUser: (state, action) => {
       state.user = action.payload;
     },
@@ -63,6 +64,12 @@ export const noteSlice = createSlice({
     },
     setTotalResults: (state, action) => {
       state.totalResults = action.payload;
+    },
+    setNotification: (state, action) => {
+      state.notificationMsg = action.payload;
+    },
+    toggleNotification: (state) => {
+      state.notification = !state.notification;
     }
   },
 });
@@ -79,7 +86,8 @@ export const {
   toggleSortAscending,
   togglePagination,
   setTotalResults,
-  setRequestError
+  setNotification,
+  toggleNotification,
 } = noteSlice.actions;
 
 // Thunks
@@ -94,8 +102,16 @@ export const requestCreateNote = (payload) => async(dispatch) => {
     await dispatch(setCurrentNote(response.data));
     const { id } = response.data;
     history.push(`/note/${id}`);
+    dispatch(notify({
+      type: 'success',
+      message: 'Note successfully saved'
+    }));
   } catch(e) {
     console.log(e);
+    dispatch(notify({
+      type: 'error',
+      message: 'Error getting note'
+    }));
   }
 }
 
@@ -117,6 +133,10 @@ export const requestGetNotes = (payload) => async(dispatch) => {
       await dispatch(setTotalResults(Number(response.data[0].full_count)));
     }
   } catch(e) {
+    dispatch(notify({
+      type: 'error',
+      message: 'Error getting notes'
+    }))
     console.log(e);
   }
 }
@@ -127,6 +147,10 @@ export const requestGetNoteById = (payload) => async(dispatch) => {
     const response = await axios.get(`/user/${userId}/note/${id}`);
     await dispatch(await setCurrentNote(response.data));
   } catch(e) {
+    dispatch(notify({
+      type: 'error',
+      message: 'Error getting note'
+    }))
     console.log(e);
   }
 }
@@ -140,7 +164,15 @@ export const requestUpdateNote = (payload) => async(dispatch) => {
       requestBody,
     );
     await dispatch(setCurrentNote(response.data));
+    dispatch(notify({
+      type: 'success',
+      message: 'Note successfully updated'
+    }))
   } catch(e) {
+    dispatch(notify({
+      type: 'error',
+      message: 'Error updating note'
+    }))
     console.log(e);
   }
 }
@@ -151,7 +183,15 @@ export const requestDeleteNote = (payload) => async(dispatch) => {
     await axios.delete(`/user/${userId}/note/${id}`);
     await dispatch(clearCurrentNote());
     history.push('/notes');
+    dispatch(notify({
+      type: 'success',
+      message: 'Note successfully deleted'
+    }));
   } catch(e) {
+    dispatch(notify({
+      type: 'error',
+      message: 'Error deleting note'
+    }));
     console.log(e);
   }
 }
@@ -166,6 +206,14 @@ export const clearCurrentNote = () => (dispatch) => {
   }));
 }
 
+export const notify = (payload) => (dispatch) => {
+  dispatch(setNotification(payload))
+  dispatch(toggleNotification());
+  setTimeout(
+    function() { dispatch(toggleNotification()) }
+    , 1000);
+}
+
 // Selectors
 export const selectUser = state => state.notes.user;
 export const selectAllNotes = state => state.notes.allNotes;
@@ -177,5 +225,7 @@ export const selectPagination = state => state.notes.pagination;
 export const selectLimit = state => state.notes.limit;
 export const selectStart = state => state.notes.start;
 export const selectTotalResults = state => state.notes.totalResults;
+export const selectNotificationStatus = state => state.notes.notification;
+export const selectNotificationMsg = state => state.notes.notificationMsg;
 
 export default noteSlice.reducer;

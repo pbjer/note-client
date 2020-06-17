@@ -7,4 +7,18 @@ const instance = axios.create({
   baseURL: `${process.env.REACT_APP_API_ROOT}`,
 });
 
+instance.interceptors.response.use((response) => {
+  return response;
+}, (error) => { return handleErrorResponse(error); });
+
+const handleErrorResponse = (e) => {
+  const { status } = e.response;
+  if (status === 401) {
+    window.location.replace(
+      `${process.env.REACT_APP_API_ROOT}/auth/google`
+    );
+  };
+  return Promise.reject(e);
+};
+
 export default instance;
