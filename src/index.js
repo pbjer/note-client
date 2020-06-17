@@ -36,7 +36,7 @@ const handleErrorResponse = (e) => {
       `${process.env.REACT_APP_CLIENT_ROOT}/404`
       );
       break
-    case 422: dispatch(setRequestError(403));
+    case 422: dispatch(setRequestError(422));
       break
     default: dispatch(setRequestError(e.response.status));
   }
