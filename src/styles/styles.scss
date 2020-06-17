@@ -32,3 +32,7 @@ body, #root, #app-wrapper {
   background: $white;
   color: $ruby;
 }
+
+.disabled {
+  opacity: .3;
+}
