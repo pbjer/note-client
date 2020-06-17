@@ -1,0 +1,18 @@
+@keyframes Fadeout {
+  0% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+.notification {
+  position: fixed;
+  top: 60px;
+  animation: Fadeout 1s;
+}
