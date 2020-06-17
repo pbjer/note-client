@@ -105,7 +105,9 @@ export const requestGetNotes = (payload) => async(dispatch) => {
   try {
     const response = await axios.get(`/user/${userId}${params}`);
     await dispatch(setAllNotes(response.data));
-    await dispatch(setTotalResults(Number(response.data[0].full_count)));
+    if (response.data.length > 0) {
+      await dispatch(setTotalResults(Number(response.data[0].full_count)));
+    }
   } catch(e) {
     console.log(e);
   }
