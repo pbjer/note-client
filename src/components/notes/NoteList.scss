@@ -1,3 +1,5 @@
+@import '../../styles/variables';
+
 .no-notes {
   display: flex;
   height: 300px;
@@ -6,5 +8,44 @@
   justify-content: center;
 }
 .message {
-  margin-bottom: 15px;
+  margin-bottom: $margin-default;
+}
+.list-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: $margin-default;
+}
+.sort-message {
+  margin-right: 10px;
+}
+.sort-button {
+  padding: 5px 0px;
+  font-size: 1em;
+  color: $ruby;
+  background: none;
+  border: none;
+  border-bottom: 2px solid $ruby;
+  &:hover {
+    cursor: pointer;
+  }
+}
+.page-nav {
+  margin-top: $margin-default;
+  display: flex;
+  justify-content: space-between;
+  :first-child {
+    margin-right: 10px;
+  }
+}
+.pagination-btn {
+  padding: 10px 20px;
+  font-size: 1em;
+  background: $pale-sapphire;
+  color: $sapphire;
+  border: none;
+  border-radius: $radius-default;
+  &:hover {
+    cursor: pointer;
+  }
 }

@@ -30,19 +30,19 @@ textarea {
 }
 .note_input-title {
   width: 100%;
-  margin-top: 15px;
+  margin-top: $margin-default;
   font-size: 2em;
   font-weight: $heavy;
 }
 .note_input-body {
   width: 100%;
-  margin-top: 15px;
+  margin-top: $margin-default;
   font-size: 1.25em;
   padding-bottom: 0;
 }
 .form-actions {
-  margin-top: 15px;
-}
-.btn-primary {
-  margin-right: 10px;
+  margin-top: $margin-default;
+  :first-child {
+    margin-right: 10px;
+  }
 }

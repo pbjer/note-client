@@ -15,7 +15,7 @@ body, #root, #app-wrapper {
   display: inline-block;
   text-decoration: none;
   padding: 10px;
-  border-radius: 6px;
+  border-radius: $radius-default;
   font-size: 1em;
   &:hover {
     cursor: pointer;

@@ -45,6 +45,7 @@
 }
 @media screen and (max-width: 580px) {
   .note-list-item {
+    display: block;
     padding: 20px 10px;
   }
   .title {
@@ -53,8 +54,10 @@
   .created {
     font-size: .8em;
   }
+  .left {
+    margin-bottom: $margin-default;
+  }
   .right {
-    margin-top: 15px;
     justify-content: flex-start;
   }
   .updated {

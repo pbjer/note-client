@@ -1,6 +1,7 @@
 // colors
 $ruby: #ff4477;
 $sapphire: #4477ff;
+$pale-sapphire: #ecf1ff;
 $black: #000000;
 $offblack: #3f3f3f;
 $darkgrey: #808080;
@@ -12,7 +13,11 @@ $white: #ffffff;
 // borders
 $input-border: 2px solid $lightgrey;
 $list-item-border: 1px solid $lightgrey;
+$radius-default: 6px;
 
 // fonts sizes
 $heavy: 700;
 $regular: 400;
+
+// margin
+$margin-default: 15px;
