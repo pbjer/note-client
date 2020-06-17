@@ -39,6 +39,8 @@ export const NoteForm = () => {
     // eslint-disable-next-line
   },[id, dispatch]);
 
+  // resizes the textarea on line additions and
+  // removals for a simple user experience
   const resizeTextArea = (ref) => {
     ref.style.height = 'inherit';
     ref.style.height = `${ref.scrollHeight + 10}px`;
@@ -64,7 +66,8 @@ export const NoteForm = () => {
   }
 
   let [ deleteStep, setDeleteStep ] = useState(0);
-
+  // facilitates a simple confirmation
+  // flow when trying to delete a note
   const handleDelete = async(e) => {
     e.preventDefault();
     setDeleteStep(deleteStep = deleteStep + 1);

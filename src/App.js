@@ -19,6 +19,8 @@ import './App.scss';
 
 export const App = () => {
   const dispatch = useDispatch();
+  // Sets and maintains the users session
+  // on login and across refreshes.
   const token = Cookies.get('token');
   if (token !== undefined) {
     const { id } = jwtDecode(token);

@@ -5,6 +5,9 @@ import { paramBuilder } from '../../utils/paramBuilder';
 export const noteSlice = createSlice({
   name: 'notes',
   initialState: {
+    // If new features past notes were added to this app
+    // it would be worthwhile to create a separate slice
+    // for managing user state by itself.
     user: {
       loggedIn: false,
       userId: null,
@@ -41,7 +44,7 @@ export const noteSlice = createSlice({
     setAllNotes: (state, action) => {
       state.allNotes = action.payload;
     },
-    // note list options
+    // Note list options
     toggleSortAscending: (state) => {
       state.sortAscending = !state.sortAscending;
     },

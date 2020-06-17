@@ -83,7 +83,7 @@ export const NoteList = () => {
         <ul>
           { notesList }
         </ul>
-        {
+        { // Pagination UI would be worthwhile to abtract out into its own component
           pagination ? (
             <div className="page-nav">
               <button
