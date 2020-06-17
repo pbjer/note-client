@@ -18,17 +18,10 @@ export const NoteForm = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const params = useParams();
-  const { userId } = useSelector(selectUser);
-  const id = params.id ? params.id : null;
   const { title, body } = useSelector(selectCurrentNote);
 
-  const bodyRef = useCallback(node => {
-    if(node!== null) {
-      resizeTextArea(node);
-    }
-    // eslint-disable-next-line
-  }, [ body ]);
-
+  const { userId } = useSelector(selectUser);
+  const id = params.id ? params.id : null;
   useEffect(() => {
     if (id !== null) {
       dispatch(requestGetNoteById({ id, userId }));
@@ -41,11 +34,16 @@ export const NoteForm = () => {
 
   // resizes the textarea on line additions and
   // removals for a simple user experience
+  const bodyRef = useCallback(node => {
+    if(node!== null) {
+      resizeTextArea(node);
+    }
+    // eslint-disable-next-line
+  }, [ body ]);
   const resizeTextArea = (ref) => {
     ref.style.height = 'inherit';
     ref.style.height = `${ref.scrollHeight + 10}px`;
   }
-
   const handleBodyInput = (e) => {
     dispatch(setCurrentBody(e.target.value));
     resizeTextArea(e.target);
@@ -54,7 +52,6 @@ export const NoteForm = () => {
   const formIncomplete = () => {
     return (title === '' || body === '');
   }
-
   const handleSave = async(e) => {
     e.preventDefault();
     if (formIncomplete()) return;
@@ -65,9 +62,9 @@ export const NoteForm = () => {
     }
   }
 
-  let [ deleteStep, setDeleteStep ] = useState(0);
   // facilitates a simple confirmation
   // flow when trying to delete a note
+  let [ deleteStep, setDeleteStep ] = useState(0);
   const handleDelete = async(e) => {
     e.preventDefault();
     setDeleteStep(deleteStep = deleteStep + 1);
