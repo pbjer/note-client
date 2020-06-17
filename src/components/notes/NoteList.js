@@ -27,11 +27,8 @@ export const NoteList = () => {
   const totalResults = useSelector(selectTotalResults);
 
   useEffect(() => {
-    const fetchData = async() => {
-      const payload = { userId, sort, pagination, limit, start };
-      await dispatch(requestGetNotes(payload));
-    }
-    fetchData();
+    const payload = { userId, sort, pagination, limit, start };
+    dispatch(requestGetNotes(payload));
     // eslint-disable-next-line
   },[dispatch, sort, start]);
 
