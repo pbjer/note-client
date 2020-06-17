@@ -35,4 +35,8 @@ body, #root, #app-wrapper {
 
 .disabled {
   opacity: .3;
+  &:hover {
+    opacity: .3;
+    cursor: not-allowed;
+  }
 }
