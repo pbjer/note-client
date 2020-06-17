@@ -13,14 +13,23 @@ export const Header = () => {
     <header id="header">
       <nav>
         <ul className="nav-list">
-          <li className="nav-item">
+          <li className="nav-item main">
             <Link
               to={ loggedIn ? '/notes' : '/'}
               className="nav-link all-notes">
               All Notes
             </Link>
           </li>
-          <li className="nav-item">
+          { loggedIn ?
+            <li className="nav-item settings">
+            <Link
+              to="/settings"
+              className="nav-link">
+              Settings
+            </Link>
+          </li> : null
+          }
+          <li className="nav-item auth">
             <AuthLink loggedIn={loggedIn} />
           </li>
         </ul>
