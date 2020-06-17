@@ -7,14 +7,14 @@ import {
 } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import jwtDecode from 'jwt-decode';
-import { setUser } from './components/notes/noteSlice';
-import { Header } from './components/Header';
-import { Home } from './components/Home';
-import { NoteList } from './components/notes/NoteList';
-import { NoteForm } from './components/notes/NoteForm';
-import { Settings } from './components/Settings';
-import { NoMatch } from './components/NoMatch';
-import { Notification } from './components/Notification';
+import { setUser } from './features/notes/noteSlice';
+import { Header } from './features/Header';
+import { Home } from './features/Home';
+import { NoteList } from './features/notes/NoteList';
+import { NoteForm } from './features/notes/NoteForm';
+import { Settings } from './features/Settings';
+import { NoMatch } from './features/NoMatch';
+import { Notification } from './features/Notification';
 import './styles/styles.scss';
 import './App.scss';
 
