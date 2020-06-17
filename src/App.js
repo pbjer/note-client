@@ -13,6 +13,7 @@ import { Home } from './components/Home';
 import { NoteList } from './components/notes/NoteList';
 import { NoteForm } from './components/notes/NoteForm';
 import { Settings } from './components/Settings';
+import { NoMatch } from './components/NoMatch';
 import './styles/styles.scss';
 import './App.scss';
 
@@ -48,6 +49,9 @@ export const App = () => {
             exact
             path="/settings"
             component={Settings} />
+          <Route
+            exact
+            component={NoMatch} />
         </Switch>
       </Router>
     </div>

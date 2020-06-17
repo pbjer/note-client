@@ -11,7 +11,7 @@
     transform: translateY(5px);
   }
 }
-.home {
+.lost {
   position: relative;
   min-height: 400px;
   display: flex;
@@ -24,7 +24,7 @@
   font-size: 100px;
   position: absolute;
   top: 0px;
-  left: calc(50% - 45px);
+  left: calc(50% - 50px);
 }
 .header {
   font-weight: $heavy;
