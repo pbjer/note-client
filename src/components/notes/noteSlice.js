@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from '../../lib/axios';
+import { paramBuilder } from '../../utils/paramBuilder';
 
 export const noteSlice = createSlice({
   name: 'notes',
@@ -15,7 +16,12 @@ export const noteSlice = createSlice({
       created_at: null,
       updated_at: null
     },
-    allNotes: []
+    allNotes: [],
+    sortAscending: false,
+    pagination: false,
+    limit: null,
+    start: 0,
+    totalResults: 0,
   },
   reducers: {
     // Redux Toolkit uses Immer under the hood to provide
@@ -35,6 +41,22 @@ export const noteSlice = createSlice({
     setAllNotes: (state, action) => {
       state.allNotes = action.payload;
     },
+    // note list options
+    toggleSortAscending: (state) => {
+      state.sortAscending = !state.sortAscending;
+    },
+    togglePagination: (state, action) => {
+      state.pagination = !state.pagination;
+    },
+    setLimit: (state, action) => {
+      state.limit = action.payload;
+    },
+    setStart: (state, action) => {
+      state.start = action.payload;
+    },
+    setTotalResults: (state, action) => {
+      state.totalResults = action.payload;
+    }
   },
 });
 
@@ -43,7 +65,13 @@ export const {
   setCurrentNote,
   setCurrentTitle,
   setCurrentBody,
-  setAllNotes
+  setAllNotes,
+  setPages,
+  setLimit,
+  setStart,
+  toggleSortAscending,
+  togglePagination,
+  setTotalResults,
 } = noteSlice.actions;
 
 // Thunks
@@ -63,10 +91,21 @@ export const requestCreateNote = (payload) => async(dispatch) => {
   }
 }
 
-export const requestGetNotes = (userId) => async(dispatch) => {
+export const requestGetNotes = (payload) => async(dispatch) => {
+  const { userId, sort, pagination, limit, start } = payload;
+  let options = [];
+  if (sort) {
+    options.push('order=asc');
+  }
+  if (pagination) {
+    options.push(`limit=${limit}`);
+    options.push(`start=${start}`);
+  }
+  const params = paramBuilder(options);
   try {
-    const response = await axios.get(`/user/${userId}`);
+    const response = await axios.get(`/user/${userId}${params}`);
     await dispatch(setAllNotes(response.data));
+    await dispatch(setTotalResults(Number(response.data[0].full_count)));
   } catch(e) {
     console.log(e);
   }
@@ -123,5 +162,10 @@ export const selectAllNotes = state => state.notes.allNotes;
 export const selectCurrentNote = state => state.notes.currentNote;
 export const selectCurrentTitle = state => state.notes.currentNote.title;
 export const selectCurrentBody = state => state.notes.currentNote.title;
+export const selectSortAscending = state => state.notes.sortAscending;
+export const selectPagination = state => state.notes.pagination;
+export const selectLimit = state => state.notes.limit;
+export const selectStart = state => state.notes.start;
+export const selectTotalResults = state => state.notes.totalResults;
 
 export default noteSlice.reducer;
