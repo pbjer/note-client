@@ -24,14 +24,13 @@ export const NoteList = () => {
   const pagination = useSelector(selectPagination);
   const limit = useSelector(selectLimit);
   const start = useSelector(selectStart);
-  const totalResults = useSelector(selectTotalResults);
-
   useEffect(() => {
     const payload = { userId, sort, pagination, limit, start };
     dispatch(requestGetNotes(payload));
     // eslint-disable-next-line
   },[dispatch, sort, start]);
 
+  const totalResults = useSelector(selectTotalResults);
   const nextPossible = () => {
     return start + limit < totalResults;
   }
@@ -40,7 +39,6 @@ export const NoteList = () => {
       dispatch(setStart(start + limit));
     }
   };
-
   const prevPossible = () => {
     return start - limit >= 0;
   }
