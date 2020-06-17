@@ -3,6 +3,7 @@ import {
   useSelector,
   useDispatch
 } from 'react-redux';
+import { Link } from 'react-router-dom';
 import {
   selectPagination,
   togglePagination,
@@ -27,7 +28,7 @@ export const Settings = () => {
         className="settings-header">
         Settings
       </h1>
-      <label className="page-toggle">
+      <label className={`page-toggle ${pagination ? 'active-label' : ''}`}>
         <input
           type="checkbox"
           name="pages"
@@ -41,33 +42,40 @@ export const Settings = () => {
             <p className="num-pages-label">
               Notes per page
             </p>
-            <label className="num-pages">
+            <label className={`num-pages ${limit === 5 ? 'active-label' : ''}`}>
               <input
                 type="radio"
                 name="page-length"
                 value={5}
                 checked={limit === 5}
                 onChange={(e) => handleRadioChange(e)} />
-                5
+                <span>5</span>
             </label>
-            <label className="num-pages">
+            <label className={`num-pages ${limit === 10 ? 'active-label' : ''}`}>
               <input
                 type="radio"
                 name="page-length"
                 value={10}
                 checked={limit === 10}
                 onChange={(e) => handleRadioChange(e)} />
-                10
+                <span>10</span>
             </label>
-            <label className="num-pages">
+            <label className={`num-pages ${limit === 20 ? 'active-label' : ''}`}>
               <input
                 type="radio"
                 name="page-length"
                 value={20}
                 checked={limit === 20}
                 onChange={(e) => handleRadioChange(e)} />
-                20
+                <span>20</span>
             </label>
+            <div>
+              <Link
+                className="btn btn-primary done"
+                to="/notes">
+                Done
+              </Link>
+            </div>
           </div>
         ) : null
       }

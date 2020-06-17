@@ -22,7 +22,7 @@ export const noteSlice = createSlice({
     allNotes: [],
     sortAscending: false,
     pagination: false,
-    limit: null,
+    limit: 5,
     start: 0,
     totalResults: 0,
     notification: false,
