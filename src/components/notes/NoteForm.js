@@ -39,18 +39,23 @@ export const NoteForm = () => {
     // eslint-disable-next-line
   },[id, dispatch]);
 
-  const handleBodyInput = (e) => {
-    dispatch(setCurrentBody(e.target.value));
-    resizeTextArea(e.target);
-  }
-
   const resizeTextArea = (ref) => {
     ref.style.height = 'inherit';
     ref.style.height = `${ref.scrollHeight + 10}px`;
   }
 
+  const handleBodyInput = (e) => {
+    dispatch(setCurrentBody(e.target.value));
+    resizeTextArea(e.target);
+  }
+
+  const formIncomplete = () => {
+    return (title === '' || body === '');
+  }
+
   const handleSave = async(e) => {
     e.preventDefault();
+    if (formIncomplete()) return;
     if (id === null) {
       await dispatch(requestCreateNote({ userId, title, body, history }));
     } else {
@@ -84,15 +89,19 @@ export const NoteForm = () => {
       </label>
       <div className="form-actions">
         <button
-          className="btn btn-primary"
+          className={`btn btn-primary ${formIncomplete() ? 'disabled' : ''}`}
           onClick={e => handleSave(e)}>
           Save note
         </button>
-        <button
-          className="btn btn-secondary"
-          onClick={(e) => handleDelete(e)}>
-          Delete this note
-        </button>
+        {
+          id ? (
+            <button
+              className="btn btn-secondary"
+              onClick={(e) => handleDelete(e)}>
+              Delete this note
+            </button>
+          ) : null
+        }
       </div>
     </form>
   );
