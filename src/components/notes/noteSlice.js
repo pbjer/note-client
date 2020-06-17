@@ -8,6 +8,7 @@ export const noteSlice = createSlice({
     // If new features past notes were added to this app
     // it would be worthwhile to create a separate slice
     // for managing user state by itself.
+    requestError: null,
     user: {
       loggedIn: false,
       userId: null,
@@ -29,6 +30,9 @@ export const noteSlice = createSlice({
   reducers: {
     // Redux Toolkit uses Immer under the hood to provide
     // a 'mutation' like interface for updating state
+    setRequestError: (state, action) => {
+      state.requestError = action.payload;
+    },
     setUser: (state, action) => {
       state.user = action.payload;
     },
@@ -75,6 +79,7 @@ export const {
   toggleSortAscending,
   togglePagination,
   setTotalResults,
+  setRequestError
 } = noteSlice.actions;
 
 // Thunks
