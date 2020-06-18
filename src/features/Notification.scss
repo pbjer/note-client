@@ -1,3 +1,5 @@
+@import '../styles/variables';
+
 @keyframes Fadeout {
   0% {
     opacity: 1;
@@ -15,4 +17,7 @@
   position: fixed;
   top: 60px;
   animation: Fadeout 1s;
+  background: $white;
+  padding: 2px;
+  border-radius: 2px;
 }
