@@ -15,11 +15,14 @@ import './Settings.scss';
 export const Settings = () => {
   const dispatch = useDispatch();
 
-  const pagination = useSelector(selectPagination);
   const limit = useSelector(selectLimit);
-
   const handleRadioChange = (e) => {
     dispatch(setLimit(Number(e.target.value)));
+  };
+
+  const pagination = useSelector(selectPagination);
+  const handleTogglePagination = () => {
+    dispatch(togglePagination());
   };
 
   return (
@@ -33,7 +36,7 @@ export const Settings = () => {
           type="checkbox"
           name="pages"
           checked={pagination}
-          onChange={() => dispatch(togglePagination())} />
+          onChange={() => handleTogglePagination()} />
           View notes by page
       </label>
       {
