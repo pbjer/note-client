@@ -78,7 +78,7 @@ export const NoteForm = () => {
       <label className="input-row">
         Title
         <input
-          className="note_input-title"
+          className="note-input-title"
           type="text"
           placeholder="Something short and descriptive"
           value={title}
@@ -87,7 +87,7 @@ export const NoteForm = () => {
       <label className="input-row">
         Body
         <textarea
-          className="note_input-body"
+          className="note-input-body"
           value={body}
           ref={bodyRef}
           onChange={e => handleBodyInput(e)} />

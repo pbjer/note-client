@@ -41,7 +41,7 @@ export const Settings = () => {
       </label>
       {
         pagination ? (
-          <div>
+          <div class="radio-wrapper">
             <p className="num-pages-label">
               Notes per page
             </p>
@@ -72,16 +72,16 @@ export const Settings = () => {
                 onChange={(e) => handleRadioChange(e)} />
                 <span>20</span>
             </label>
-            <div>
-              <Link
-                className="btn btn-primary done"
-                to="/notes">
-                Done
-              </Link>
-            </div>
           </div>
         ) : null
       }
+      <div>
+        <Link
+          className="btn btn-primary done"
+          to="/notes">
+          Done
+        </Link>
+      </div>
     </div>
   );
 }

@@ -28,13 +28,13 @@ textarea {
   margin-top: 50px;
   color: $darkgrey;
 }
-.note_input-title {
+.note-input-title {
   width: 100%;
   margin-top: $margin-default;
   font-size: 2em;
   font-weight: $heavy;
 }
-.note_input-body {
+.note-input-body {
   width: 100%;
   margin-top: $margin-default;
   font-size: 1.25em;
@@ -44,5 +44,14 @@ textarea {
   margin-top: $margin-default;
   :first-child {
     margin-right: 10px;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .note-input-title {
+    font-size: 1.25em;;
+  }
+  .note-input-body {
+    font-size: 1em;
   }
 }

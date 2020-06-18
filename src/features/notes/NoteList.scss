@@ -12,6 +12,7 @@
 }
 .list-options {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   margin-bottom: $margin-default;
@@ -47,5 +48,11 @@
   border-radius: $radius-default;
   &:hover {
     cursor: pointer;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .sort-message, .sort-button {
+    font-size: .9em;
   }
 }

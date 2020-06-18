@@ -29,3 +29,11 @@
 .settings {
   margin-right: 25px;
 }
+@media screen and (max-width: 380px) {
+  .nav-link {
+    font-size: .9em;
+  }
+  .main {
+    font-size: 1.25em;;
+  }
+}

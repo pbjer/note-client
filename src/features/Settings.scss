@@ -20,6 +20,9 @@
 .num-pages-label {
   margin-bottom: 10px;
 }
+.radio-wrapper {
+  margin-bottom: $margin-default;
+}
 .num-pages {
   display: inline-block;
   padding: 10px 12px 10px 10px;
@@ -43,7 +46,4 @@
   color: $sapphire;
   border: 1px solid $sapphire;
   background: $pale-sapphire;
-}
-.done {
-  margin-top: $margin-default;
 }
