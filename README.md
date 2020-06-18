@@ -1,10 +1,15 @@
 # note-client
 
 This is the frontend client of a note-taking application with the following features:
+
 - Oauth signin with Google
+
 - Create, read, update, and delete your notes
+
 - Sort by most recent, or oldest first
+
 - View all of your notes at once, or view them by page (available via settings once logged in)
+
 - View when your note was created, as well as the last time you updated it
 
 ## Install dependencies
