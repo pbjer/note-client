@@ -1,10 +1,14 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import {
-  BrowserRouter as Router,
   Switch,
   Route,
+  useLocation,
 } from 'react-router-dom';
+import {
+  SwitchTransition,
+  CSSTransition
+} from 'react-transition-group';
 import Cookies from 'js-cookie';
 import jwtDecode from 'jwt-decode';
 import { setUser } from './features/notes/noteSlice';
@@ -28,37 +32,43 @@ export const App = () => {
     dispatch(setUser({ userId:id, loggedIn: true }));
   }
 
+  let location = useLocation();
+
   return (
     <div id="app-wrapper">
-      <Router>
-        <Header />
-        <Notification />
-        <Switch>
-          <Route
-            exact
-            path="/"
-            component={Home}/>
-          <Route
-            exact
-            path="/notes"
-            component={NoteList} />
-          <Route
-            exact
-            path="/new-note"
-            component={NoteForm} />
-          <Route
-            exact
-            path="/note/:id"
-            component={NoteForm} />
-          <Route
-            exact
-            path="/settings"
-            component={Settings} />
-          <Route
-            exact
-            component={NoMatch} />
-        </Switch>
-      </Router>
+      <Header />
+      <Notification />
+      <SwitchTransition mode="out-in">
+        <CSSTransition
+          key={location.key}
+          classNames="fade">
+          <Switch location={location}>
+            <Route
+              exact
+              path="/"
+              component={Home}/>
+            <Route
+              exact
+              path="/notes"
+              component={NoteList} />
+            <Route
+              exact
+              path="/new-note"
+              component={NoteForm} />
+            <Route
+              exact
+              path="/note/:id"
+              component={NoteForm} />
+            <Route
+              exact
+              path="/settings"
+              component={Settings} />
+            <Route
+              exact
+              component={NoMatch} />
+          </Switch>
+        </CSSTransition>
+      </SwitchTransition>
     </div>
   );
 }
